@@ -1,0 +1,25 @@
+pollutantmean <- function(directory, pollutant = c("sulfate", "nitrate"), id = 1:332){
+    ##Setting the desired WD
+    setwd(file.path(getwd(), directory))
+    ##Setting the parameters for the calculations of Mean
+    a <- getwd()
+    b <- list.files(a)
+    ##Creating the data.table from all desired files
+    for(i in id){
+        if(exists("f")){
+            tf <- read.table(b[i], header = TRUE, sep = ",")
+            f <- rbind(f, tf)
+            rm(tf)
+        }
+        
+        if(!exists("f")){
+            f <- read.table(b[i], header = TRUE, sep = ",")
+        }
+        
+    }
+    ##Mean calculation of the desired column
+        s <- mean(f[, pollutant], na.rm = TRUE)
+        ##Setting the directory back to the original
+        setwd("C:/Users/Frank Pinto/Desktop/Universidad/R-Programming")
+        s
+}
