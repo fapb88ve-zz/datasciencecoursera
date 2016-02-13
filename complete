@@ -1,0 +1,29 @@
+complete <- function(directory, id = 1:332){
+##Setting directory
+    setwd(file.path(getwd(), directory))
+    a <- list.files(getwd())
+    
+    for(i in id){
+    ##Finding how many complete cases are in desired files
+        if(exists("f")){
+            m <- read.table(a[i], header = TRUE, sep = ",")
+            t <- as.numeric(complete.cases(m))
+            tf <- c(i, sum(t))
+            f <- rbind(f, tf)
+            rm(tf)
+            rm(m)
+            rm(t)
+            
+        }
+        if(!exists("f")){
+            b <- read.table(a[i], header = TRUE, sep = ",")
+            d <- as.numeric(complete.cases(b))
+            f <- c(i, sum(d))
+        }
+        f
+    }
+    colnames(f) <- c("id", "nobs")
+    View(f, "g")
+    setwd("C:/Users/Frank Pinto/Desktop/Universidad/R-Programming")
+}
+}
