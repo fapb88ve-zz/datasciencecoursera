@@ -1,0 +1,24 @@
+corr <- function(directory, threshold = 0){
+    setwd(file.path(getwd(), directory))
+    a <- list.files(getwd())
+    i <- 1
+    while(i <= length(a)){
+        b <- read.table(a[i], header = TRUE, sep = ",")
+        if(sum(as.numeric(complete.cases(b))) >= threshold & exists("f")){
+            tf <- cor(b[, 2], b[, 3], use = "pairwise.complete.obs")
+            f <- cbind(f, tf)
+            rm(tf)
+        }  
+        if(sum(as.numeric(complete.cases(b))) >= threshold & !exists("f")){
+            f <- cor(b[, 2], b[, 3], use = "pairwise.complete.obs")
+        } 
+        i <- i+1
+        
+    }
+if(!exists("f")){
+    f <- vector(mode = "numeric")
+}
+View(sort(f), "f")
+f
+setwd("C:/Users/Frank Pinto/Desktop/Universidad/R-Programming")
+}
